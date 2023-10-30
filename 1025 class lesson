@@ -1,3 +1,6 @@
+// Author:Julia Chen
+// Title:Week7 Classwork
+
 #ifdef GL_ES
 precision mediump float;
 #endif
