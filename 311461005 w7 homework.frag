@@ -1,3 +1,6 @@
+// Author: Chen Tzu Yin
+// Title: Week7 Homework
+
 #ifdef GL_ES
 precision mediump float;
 #endif
