@@ -5,8 +5,8 @@
 precision mediump float;
 #endif
 
-void BreathingRing();
-void Noise();
+//void BreathingRing();
+//void Noise();
 
 uniform vec2 u_resolution;
 uniform vec2 u_mouse;
