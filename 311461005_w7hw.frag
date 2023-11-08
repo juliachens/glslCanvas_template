@@ -101,7 +101,7 @@ void main() {
     float dist = length(uv);
     float circle_dist = abs(dist-0.512);                                //光環大小
     
-    float interact= mouseEffect(uv,mouse,0.388);
+    //float interact= mouseEffect(uv,mouse,0.388);
     
 float result;
     for(int index=0; index<6; ++index)
@@ -109,7 +109,7 @@ float result;
         
     //model spade
     vec2 uv_flip= vec2(uv.x, -uv.y);
-    float noise_position= interact;
+    //float noise_position= interact;
     float weight= smoothstep(0.056,-0.020,-uv.y);
         float freq= 4.0+ float(index)*-0.332; //第一次迴圈是8-8.1-8.2-......
     float noisespade = gnoise(uv_flip*freq+vec2(-0.1*u_time,-0.2*u_time))*-0.092*weight;//偏移加變形加權重
