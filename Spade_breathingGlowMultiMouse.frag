@@ -1,4 +1,4 @@
-// Author:CMH
+// Author:Chen Tzu Yin
 // Title:Spade
 
 #ifdef GL_ES
@@ -100,7 +100,7 @@ float cross(vec2 P, float size)
 float mouseEffect(vec2 uv, vec2 mouse, float size)
 {
     float dist=length(uv-mouse);
-    return 1.2-smoothstep(size*0.020, size, dist);  //size
+    return 1.2-smoothstep(size*0.02, size, dist);  //size
     //return pow(dist, 0.5);
 }
 
@@ -119,7 +119,7 @@ void main() {
     float dir= dot(point, (uv))+0.55;
     
     //互動陰晴圓缺
-    float interact=1.024-mouseEffect(uv,mouse,0.270);
+    float interact=1.024-mouseEffect(uv,mouse,0.718);
     
     //亂數作用雲霧
     float fog= fbm(0.4*uv+vec2(-0.1*u_time, -0.02*u_time))*0.4+0.1;
@@ -139,7 +139,7 @@ void main() {
         
     //model cross
     float cross_position= interact;
-    float cross_noise = noise(vec3(2.708*uv,index+u_time*0.908))*0.112*cross_position;
+    float cross_noise = noise(vec3(2.50*uv,index+u_time*0.204))*0.312*cross_position;
     float cross_dist= abs(cross(uv,1.560)+cross_noise);
         
     //動態呼吸
