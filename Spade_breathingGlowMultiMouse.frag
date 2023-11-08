@@ -1,5 +1,5 @@
 // Author:Chen Tzu Yin
-// Title:Spade
+// Title:Spade Glow MultiMouse
 
 #ifdef GL_ES
 precision mediump float;
