@@ -73,10 +73,20 @@ float r2 = length(P - M_SQRT_2/2.0*vec2(+1.0,+0.2)*s) - s; float r3 = length(P -
 return min(r4,r9);
 }
 
+float mouseEffect(vec2 uv, vec2 mouse, float size)
+{
+    float dist=length(uv-mouse);
+    return 1.2-smoothstep(size*1.9, size, dist);  //size //滑鼠的中心點
+    //return pow(dist, 0.5);
+}
+
 void main() {
     vec2 uv = gl_FragCoord.xy/u_resolution.xy;
     uv.x *= u_resolution.x/u_resolution.y;
     uv= uv*2.0-1.0;
+    vec2 mouse=u_mouse/u_resolution.xy;
+    mouse.x*= u_resolution.x/u_resolution.y;
+    mouse=mouse*2.0-1.0;//[-1,1]
     
     //陰晴圓缺
     float pi=3.14159;
@@ -91,12 +101,15 @@ void main() {
     float dist = length(uv);
     float circle_dist = abs(dist-0.512);                                //光環大小
     
+    float interact= mouseEffect(uv,mouse,0.388);
+    
 float result;
     for(int index=0; index<6; ++index)
 {
         
     //model spade
     vec2 uv_flip= vec2(uv.x, -uv.y);
+    float noise_position= interact;
     float weight= smoothstep(0.056,-0.020,-uv.y);
         float freq= 4.0+ float(index)*-0.332; //第一次迴圈是8-8.1-8.2-......
     float noisespade = gnoise(uv_flip*freq+vec2(-0.1*u_time,-0.2*u_time))*-0.092*weight;//偏移加變形加權重
@@ -112,5 +125,5 @@ float result;
     result+= glow_circle; //'+'將每次的迴圈加入
 }
     
-    gl_FragColor = vec4((vec3(result)+fog)*dir*vec3(1.0, 0.5, 0.25)*0.5,1.0); //加上雲霧和調色
+    gl_FragColor = vec4((vec3(result)+fog)*dir*vec3(0.858,0.880,1.000)*0.5,1.0); //加上雲霧和調色
 }
